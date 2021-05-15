@@ -5,7 +5,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
-//import { AuthModule } from './auth/auth.module';
 import { AuthModule } from './auth/auth.module';
 
 const entities = [User];
@@ -27,7 +26,6 @@ const entities = [User];
     UsersModule,
 
     AuthModule,
-    //AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
