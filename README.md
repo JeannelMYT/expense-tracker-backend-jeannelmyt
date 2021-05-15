@@ -71,3 +71,27 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+Uses Packages
+TypeOrm  (Object Relational Mapping), for working with Database (MySql)
+https://www.npmjs.com/package/typeorm 
+
+Migration: 
+run 
+yarn migration:generate -n
+yarn migration:run
+remove migration file before starting (or configure to ignore migration file)
+
+bcryptjs (hash and salt)
+https://www.npmjs.com/package/bcryptjs
+
+Passport
+https://www.npmjs.com/package/@nestjs/passport
+JWT 
+https://www.npmjs.com/package/@nestjs/jwt
+
+class-validator, validate data received (e.g. isEmail, not empty)
+https://github.com/typestack/class-validator
+
+npm run build 
+npm run start
