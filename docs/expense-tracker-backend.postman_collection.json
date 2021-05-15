@@ -6,13 +6,13 @@
 	},
 	"item": [
 		{
-			"name": "localhost:3000/auth/login",
+			"name": "localhost:4000/auth/login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": {{username}},\n    \"password\": {{password}}\n}",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,11 +20,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/auth/login",
+					"raw": "localhost:4000/auth/login",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"auth",
 						"login"
@@ -34,7 +34,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/auth",
+			"name": "localhost:4000/auth",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -54,11 +54,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/auth",
+					"raw": "localhost:4000/auth",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"auth"
 					]
@@ -67,13 +67,13 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/users/register",
+			"name": "http://localhost:4000/users/register",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": {{username}},\n    \"email\": {{email}},\n    \"password\": {{password}}\n}",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,12 +81,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/register",
+					"raw": "http://localhost:4000/users/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"users",
 						"register"
@@ -96,7 +96,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3000/users/{{$id}}",
+			"name": "localhost:4000/users/{{$id}}",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -123,11 +123,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/users/{{$id}}",
+					"raw": "localhost:4000/users/{{$id}}",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "4000",
 					"path": [
 						"users",
 						"{{$id}}"
