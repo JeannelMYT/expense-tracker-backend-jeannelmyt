@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "localhost:4000/auth/login",
+			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -20,11 +20,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/auth/login",
+					"raw": "{{host}}/auth/login",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"auth",
 						"login"
@@ -34,40 +33,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:4000/auth",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{$access-token}}",
-							"type": "string"
-						},
-						{
-							"key": "password",
-							"value": "{{access-token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:4000/auth",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"auth"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:4000/users/register",
+			"name": "Register",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -81,12 +47,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/users/register",
-					"protocol": "http",
+					"raw": "{{host}}/users/register",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"register"
@@ -96,7 +60,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:4000/users/{{$id}}",
+			"name": "Get User Details",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -106,7 +70,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{access-token}}",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -123,18 +92,355 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/users/{{$id}}",
+					"raw": "{{host}}/users/{{id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"users",
-						"{{$id}}"
+						"{{id}}"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"newPassword\": \"{{optionalnewPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"{{id}}\",\n    \"expense\":\"{{expense}}\",\n    \"date\": \"{{date}}\",\n    \"amount\": {{amount}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/expenses/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"expenses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Expenses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/expenses/getAllExpenses/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"expenses",
+						"getAllExpenses",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/expenses/getExpense/{{expenseId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"expenses",
+						"getExpense",
+						"{{expenseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"expense\":\"{{updatedExpense}}\",\n    \"date\": \"{{updatedDate}}\",\n    \"amount\": {{updatedAmount}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/expenses/{{expenseId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"expenses",
+						"{{expenseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/expenses/{{expenseId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"expenses",
+						"{{expenseId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "test"
+		},
+		{
+			"key": "password",
+			"value": "test"
+		},
+		{
+			"key": "email",
+			"value": "test@test.com"
+		},
+		{
+			"key": "id",
+			"value": "6"
+		},
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTYyMTI0MDY4OH0.zZH9Pen7eofXTZJXVsxvv4EwwbdjMgAShhGWw4wuTGo"
+		},
+		{
+			"key": "updatedExpense",
+			"value": "thisisanupdatedexpense"
+		},
+		{
+			"key": "updatedDate",
+			"value": "21/21/21"
+		},
+		{
+			"key": "updatedAmount",
+			"value": "16"
+		},
+		{
+			"key": "expenseId",
+			"value": "10"
+		},
+		{
+			"key": "host",
+			"value": "localhost:4000"
+		},
+		{
+			"key": "expense",
+			"value": "this is an expense"
+		},
+		{
+			"key": "date",
+			"value": "17/05/21"
+		},
+		{
+			"key": "amount",
+			"value": "16"
 		}
 	]
 }

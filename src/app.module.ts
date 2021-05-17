@@ -4,10 +4,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
+import { User } from './entities/user.entity';
+import { Expense } from './entities/expense.entity';
 import { AuthModule } from './auth/auth.module';
+import { ExpensesModule } from './expenses/expenses.module';
 
-const entities = [User];
+const entities = [User, Expense];
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -20,12 +22,14 @@ const entities = [User];
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: entities,
-      synchronize: true,
+      synchronize: false,
     }),
 
     UsersModule,
 
     AuthModule,
+
+    ExpensesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

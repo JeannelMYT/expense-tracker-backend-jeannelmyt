@@ -1,0 +1,1 @@
+CREATE TABLE `expense` (`id` int NOT NULL AUTO_INCREMENT, `expense` varchar(255) NOT NULL, `amount` int NOT NULL, `date` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), `userId` int NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB

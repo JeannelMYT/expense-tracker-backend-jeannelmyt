@@ -13,9 +13,11 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const config_1 = require("@nestjs/config");
 const users_module_1 = require("./users/users.module");
-const user_entity_1 = require("./users/entities/user.entity");
+const user_entity_1 = require("./entities/user.entity");
+const expense_entity_1 = require("./entities/expense.entity");
 const auth_module_1 = require("./auth/auth.module");
-const entities = [user_entity_1.User];
+const expenses_module_1 = require("./expenses/expenses.module");
+const entities = [user_entity_1.User, expense_entity_1.Expense];
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,10 +32,11 @@ AppModule = __decorate([
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_NAME,
                 entities: entities,
-                synchronize: true,
+                synchronize: false,
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
+            expenses_module_1.ExpensesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

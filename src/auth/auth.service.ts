@@ -1,13 +1,9 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/entities/user.entity';
+import { User } from '../entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { AuthLoginDto } from './dto/auth-login.dto';
+import { AuthValidateDto } from './dto/auth-validate.dto';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +21,8 @@ export class AuthService {
 
     //Create access token for validating transactions
     return {
-      access_token: this.jwtService.sign(payload),
+      accessToken: this.jwtService.sign(payload),
+      userId: user.id,
     };
   }
 
@@ -38,5 +35,16 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  async validate(authValidateDto: AuthValidateDto): Promise<Boolean> {
+    const { id, password } = authValidateDto;
+
+    const user = await this.usersService.findById(id);
+    if (!(await user?.validatePassword(password))) {
+      throw new UnauthorizedException();
+    }
+
+    return true;
   }
 }

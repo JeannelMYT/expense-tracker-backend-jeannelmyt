@@ -9,51 +9,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Expense = void 0;
 const typeorm_1 = require("typeorm");
-const bcrypt = require("bcryptjs");
-let User = class User extends typeorm_1.BaseEntity {
-    async hashPassword() {
-        this.password = await bcrypt.hash(this.password, 8);
-    }
-    async validatePassword(password) {
-        return bcrypt.compare(password, this.password);
-    }
+const user_entity_1 = require("./user.entity");
+let Expense = class Expense extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Expense.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column({ unique: true, nullable: false, length: 12 }),
-    __metadata("design:type", String)
-], User.prototype, "username", void 0);
-__decorate([
-    typeorm_1.Column({ unique: true, nullable: false }),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
+    typeorm_1.ManyToOne((type) => user_entity_1.User, (user) => user.expenses),
+    __metadata("design:type", user_entity_1.User)
+], Expense.prototype, "user", void 0);
 __decorate([
     typeorm_1.Column({ nullable: false }),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Expense.prototype, "expense", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: false }),
+    __metadata("design:type", Number)
+], Expense.prototype, "amount", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: false }),
+    __metadata("design:type", String)
+], Expense.prototype, "date", void 0);
 __decorate([
     typeorm_1.Column(),
     typeorm_1.CreateDateColumn(),
     __metadata("design:type", Date)
-], User.prototype, "createdAt", void 0);
+], Expense.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.Column(),
     typeorm_1.UpdateDateColumn(),
     __metadata("design:type", Date)
-], User.prototype, "updatedAt", void 0);
-__decorate([
-    typeorm_1.BeforeInsert(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], User.prototype, "hashPassword", null);
-User = __decorate([
+], Expense.prototype, "updatedAt", void 0);
+Expense = __decorate([
     typeorm_1.Entity()
-], User);
-exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+], Expense);
+exports.Expense = Expense;
+//# sourceMappingURL=expense.entity.js.map

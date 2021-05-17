@@ -1,8 +1,15 @@
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { UserDto } from './dto/user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: CreateUserDto): Promise<import("./entities/user.entity").User>;
-    getUserDetails(id: string): Promise<import("./entities/user.entity").User>;
+    create(createUserDto: UserDto): Promise<import("../entities/user.entity").User>;
+    getUserDetails(id: number): Promise<import("../entities/user.entity").User>;
+    update(id: number, updateUserDto: UpdateUserDto): Promise<{
+        message: string;
+    }>;
+    delete(id: number, userDto: UserDto): Promise<{
+        message: string;
+    }>;
 }

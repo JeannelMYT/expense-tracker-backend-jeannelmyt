@@ -4,7 +4,8 @@ export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(authLoginDto: AuthLoginDto): Promise<{
-        access_token: string;
+        accessToken: string;
+        userId: number;
     }>;
     test(): Promise<string>;
 }

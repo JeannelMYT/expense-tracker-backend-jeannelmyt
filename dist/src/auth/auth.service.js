@@ -24,7 +24,8 @@ let AuthService = class AuthService {
             userId: user.id,
         };
         return {
-            access_token: this.jwtService.sign(payload),
+            accessToken: this.jwtService.sign(payload),
+            userId: user.id,
         };
     }
     async validateUser(authLoginDto) {
@@ -34,6 +35,14 @@ let AuthService = class AuthService {
             throw new common_1.UnauthorizedException();
         }
         return user;
+    }
+    async validate(authValidateDto) {
+        const { id, password } = authValidateDto;
+        const user = await this.usersService.findById(id);
+        if (!(await (user === null || user === void 0 ? void 0 : user.validatePassword(password)))) {
+            throw new common_1.UnauthorizedException();
+        }
+        return true;
     }
 };
 AuthService = __decorate([
