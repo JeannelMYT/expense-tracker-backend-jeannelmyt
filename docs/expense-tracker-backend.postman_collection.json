@@ -121,7 +121,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"{{username}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"newPassword\": \"{{optionalnewPassword}}\"\n}",
+					"raw": "{\n    \"username\": \"{{updatedUsername}}\",\n    \"email\": \"{{updatedEmail}}\",\n    \"password\": \"{{password}}\",\n    \"newPassword\": \"{{updatedPassword}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -441,6 +441,18 @@
 		{
 			"key": "amount",
 			"value": "16"
+		},
+		{
+			"key": "updatedUsername",
+			"value": "thisisanupdatedusername"
+		},
+		{
+			"key": "updatedEmail",
+			"value": "updated@email.com"
+		},
+		{
+			"key": "updatedPassword",
+			"value": "thisisanupdatedpassword"
 		}
 	]
 }

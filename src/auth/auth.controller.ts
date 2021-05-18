@@ -11,11 +11,4 @@ export class AuthController {
   async login(@Body() authLoginDto: AuthLoginDto) {
     return this.authService.login(authLoginDto);
   }
-
-  //Test page for authenticated access
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  async test() {
-    return 'You successfully accessed a guarded page!';
-  }
 }
