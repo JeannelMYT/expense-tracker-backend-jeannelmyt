@@ -67,7 +67,9 @@ Start the app:
 
 ## Additional Notes
 
-1. There are many things I would like to improve on this, (e.g. addition of automated tests, sending of emails for new account verification and password change), but am unable to do so at this point in time due to time constraint.
+1. I set the number of username characters to maximum of 12. Just wanted to have a maximum characters for at least one field and the username made sense to me at the time. 
+
+2. There are many things I would like to improve on this, (e.g. addition of automated tests, sending of emails for new account verification and password change), but am unable to do so at this point in time due to time constraint.
 
 ## Credits
 
