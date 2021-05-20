@@ -1,97 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Expense Tracker App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A live version of this app is being run on [Heroku](https://expense-tracker-backend-jean.herokuapp.com/) and is meant to work with a [frontend that is running as a Digital Ocean App](https://expense-tracker-jeannelmyt-g2sqi.ondigitalocean.app/), and a MYSQL database running on a Digital Ocean server. Other than the database, both apps are running on free-tier servers so please excuse the slowness for which the app loads data.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## How to run locally 
 
-## Description
+This was made to run with [a frontend](https://github.com/JeannelMYT/expense-tracker-jeannelmyt) so please download and run that after running this in your server.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Set up your database
+Please set up a database to work with this app before running, I used MYSQL and have included the scripts under the docs folder, please run them in this order:
+```
+1. 00_createUser.sql
+2. 01_createExpense.sql
+3. 02_addForeignKeyConstraint.sql
+```
+**Then, _before running_, create a .env file to work with this and add in your database details**
+`cp .env-example .env` 
 
-## Installation
+And edit the details: 
+```
+#DATABASE
+DB_TYPE=mysql
+DB_HOST=***CHANGE TO DATABASE HOSTNAME***
+DB_PORT=3306
+DB_USERNAME=***CHANGE TO DATABASE USERNAME***
+DB_PASSWORD=***CHANGE TO DATABASE PASSWORD***
+DB_NAME=***CHANGE TO DATABASE NAME***
 
-```bash
-$ npm install
+#JWT
+JWT_SECRET=***CHANGE TO JWT STRING (but any string would work, this only matters if you're running it on an internet connected server)***
 ```
 
-## Running the app
+### Clone the app
+`git clone https://github.com/JeannelMYT/expense-tracker-backend-jeannelmyt.git`
 
-```bash
-# development
-$ npm run start
+### If you use npm
+Install the app dependencies
+`npm install`
 
-# watch mode
-$ npm run start:dev
+Build the app
+`npm run build`
 
-# production mode
-$ npm run start:prod
-```
+Start the app
+`npm run start`
 
-## Test
+### If you use yarn
+Install the app dependencies
+`yarn install`
 
-```bash
-# unit tests
-$ npm run test
+Build the app
+`yarn build`
 
-# e2e tests
-$ npm run test:e2e
+Start the app
+`yarn start`
 
-# test coverage
-$ npm run test:cov
-```
 
-## Support
+After starting, navigate to `localhost:4000` on the browser and you should be directed to a page that just shows "Expense Tracker JeannelMYT is running!"
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## Additional Notes
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Localstorage is used in this case as usually people will enter expenses from the same device.
 
-## License
+2. Ideally I would have preferred to have fixed widths for the react-table, but as I am unfamiliar with the library, I was unable to get this to work properly. 
 
-Nest is [MIT licensed](LICENSE).
+3. Sorry for how bare it looks, design is not my forte. 
 
-Uses Packages
-TypeOrm  (Object Relational Mapping), for working with Database (MySql)
-https://www.npmjs.com/package/typeorm 
+4. There are many things I would like to improve on this, (e.g. addition of automated tests, sending of emails for new account verification and password change).
 
-Migration: 
-run 
-yarn migration:generate -n
-yarn migration:run
-remove migration file before starting (or configure to ignore migration file)
+## Credits
 
-bcryptjs (hash and salt)
-https://www.npmjs.com/package/bcryptjs
+This project was bootstrapped with [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-Passport
-https://www.npmjs.com/package/@nestjs/passport
-JWT 
-https://www.npmjs.com/package/@nestjs/jwt
-
-class-validator, validate data received (e.g. isEmail, not empty)
-https://github.com/typestack/class-validator
-
-npm run build 
-npm run start
+This project also utilises the following libraries:
+- [TypeOrm](https://www.npmjs.com/package/typeorm )
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [Passport](https://www.npmjs.com/package/@nestjs/passport)
+- [JWT](https://www.npmjs.com/package/@nestjs/jwt)
+- [class-validator](https://github.com/typestack/class-validator)
